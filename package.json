@@ -1,0 +1,19 @@
+{
+  "name": "companies-app",
+  "version": "1.0.0",
+  "description": "display companies and company details",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm start",
+    "server": "node server.js",
+    "start": "npm run server & npm run client"
+  },
+  "author": "Gavin Quirk",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}
