@@ -4,8 +4,6 @@ const mysql = require('mysql');
 
 const app = express();
 
-const SELECT_ALL_COMPANIES_QUERY = 'SELECT * FROM companies';
-
 // Create Connection
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -28,13 +26,22 @@ app.get('/', (req, res) => {
     res.send('go to /companies to see companies')
 });
 
-// app.get('/companies/details', (req, res) => {
-
-// })
-
 // Companies Route
 app.get('/companies', (req, res) => {
-    connection.query(SELECT_ALL_COMPANIES_QUERY, (err, results) => {
+    connection.query('SELECT * FROM companies', (err, results) => {
+        if(err) {
+            return res.send(err)
+        } else {
+            return res.json({
+                data: results
+            })
+        }
+    })
+})
+
+// Properties Route
+app.get('/properties', (req, res) => {
+    connection.query('SELECT * FROM properties', (err, results) => {
         if(err) {
             return res.send(err)
         } else {
