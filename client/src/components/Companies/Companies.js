@@ -38,6 +38,7 @@ class Companies extends Component {
     return (
       <div className="Companies">
         <table>
+          <thead>
             <tr>
                 <th>Company ID</th>
                 <th>Company Name</th>
@@ -48,7 +49,10 @@ class Companies extends Component {
                 <th>Zip</th>
                 <th>Phone</th>
             </tr>
+          </thead>
+          <tbody>
             {companies.map(this.renderCompany)}
+          </tbody>
         </table>
       </div>
     );

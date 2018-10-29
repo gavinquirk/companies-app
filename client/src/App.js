@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Companies from './components/Companies'
+import Properties from './components/Properties'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
 
@@ -10,7 +12,12 @@ class App extends Component {
 
   render() {
     return (
-      <Companies />
+      <BrowserRouter>
+      <div>
+        <Route path='/' component={Companies} exact/>
+        <Route path='/properties' component={Properties}/>
+      </div>
+      </BrowserRouter>
     )
   }
 }
