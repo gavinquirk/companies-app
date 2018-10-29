@@ -21,13 +21,8 @@ connection.connect(err => {
 
 app.use(cors());
 
-// Home Route  
-app.get('/', (req, res) => {
-    res.send('go to /companies to see companies')
-});
-
 // Companies Route
-app.get('/companies', (req, res) => {
+app.get('/api/companies', (req, res) => {
     connection.query('SELECT * FROM companies', (err, results) => {
         if(err) {
             return res.send(err)
@@ -40,8 +35,8 @@ app.get('/companies', (req, res) => {
 })
 
 // Properties Route
-app.get('/properties', (req, res) => {
-    connection.query('SELECT * FROM properties', (err, results) => {
+app.get('/api/properties/:company_id', (req, res) => {
+    connection.query('SELECT * FROM properties WHERE company_id=?', [req.params.company_id], (err, results) => {
         if(err) {
             return res.send(err)
         } else {
@@ -51,8 +46,6 @@ app.get('/properties', (req, res) => {
         }
     })
 })
-
-
 
 // Listen
 app.listen(4000, () => {

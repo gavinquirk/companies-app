@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+
 
 class Companies extends Component {
 
@@ -11,7 +13,7 @@ class Companies extends Component {
   }
 
   getCompanies = () => {
-    fetch('http://localhost:4000/companies')
+    fetch('http://localhost:4000/api/companies')
     .then(response => response.json())
     .then(response => this.setState({ companies: response.data }))
     .catch(err => console.error(err))
@@ -28,10 +30,10 @@ class Companies extends Component {
             <td>{state}</td>
             <td>{zip}</td>
             <td>{phone}</td>
-            <td><a href="localhost:3000/properties">Link</a></td>
+            <td><Link to={'/properties/'+company_id}>Properties</Link></td>
         </tr>
         )
-    }
+  }
 
   render() {
     const { companies } = this.state;

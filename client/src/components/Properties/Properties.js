@@ -11,7 +11,7 @@ class Properties extends Component {
   }
 
   getProperties = () => {
-    fetch('http://localhost:4000/properties')
+    fetch('http://localhost:4000/api/properties/' + this.props.match.params.company_id)
     .then(response => response.json())
     .then(response => this.setState({ properties: response.data }))
     .catch(err => console.error(err))
@@ -53,7 +53,7 @@ class Properties extends Component {
           <tbody>
             {properties.map(this.renderProperty)}
           </tbody>
-        </table>
+      </table>
     );
   }
 }
