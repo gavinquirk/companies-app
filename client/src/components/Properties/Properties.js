@@ -3,20 +3,22 @@ import React, { Component } from 'react';
 class Properties extends Component {
 
   state = {
-    properties: []
+    property: []
   }
 
   componentDidMount() {
     this.getProperties();
   }
 
+  // Fetch property data
   getProperties = () => {
     fetch('http://localhost:4000/api/properties/' + this.props.match.params.company_id)
     .then(response => response.json())
-    .then(response => this.setState({ properties: response.data }))
+    .then(response => this.setState({ property: response.data }))
     .catch(err => console.error(err))
   }
 
+  // Table data for each property
   renderProperty = ({ id, company_id, property_name, contact_first_name, street_address, city, state, zip, phone}) => {
     return (
     <tr key={id}>
@@ -34,7 +36,7 @@ class Properties extends Component {
 
   render() {
 
-    const { properties } = this.state;
+    const { property } = this.state;
 
     return (
         <table>
@@ -51,7 +53,7 @@ class Properties extends Component {
             </tr>
           </thead>
           <tbody>
-            {properties.map(this.renderProperty)}
+            {property.map(this.renderProperty)}
           </tbody>
       </table>
     );
