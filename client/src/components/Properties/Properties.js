@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+// Material UI Imports
+// import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 class Properties extends Component {
 
   state = {
@@ -18,19 +29,18 @@ class Properties extends Component {
     .catch(err => console.error(err))
   }
 
-  // Table data for each property
   renderProperty = ({ id, company_id, property_name, contact_first_name, street_address, city, state, zip, phone}) => {
     return (
-    <tr key={id}>
-        <td>{company_id}</td>
-        <td>{property_name}</td>
-        <td>{contact_first_name}</td>
-        <td>{street_address}</td>
-        <td>{city}</td>
-        <td>{state}</td>
-        <td>{zip}</td>
-        <td>{phone}</td>
-    </tr>
+      <TableRow key={id}>
+      <TableCell component="th" scope="row">{company_id}</TableCell>
+      <TableCell numeric>{property_name}</TableCell>
+      <TableCell numeric>{contact_first_name}</TableCell>
+      <TableCell numeric>{street_address}</TableCell>
+      <TableCell numeric>{city}</TableCell>
+      <TableCell numeric>{state}</TableCell>
+      <TableCell numeric>{zip}</TableCell>
+      <TableCell numeric>{phone}</TableCell>
+    </TableRow>
     )
   }
 
@@ -39,23 +49,25 @@ class Properties extends Component {
     const { property } = this.state;
 
     return (
-        <table>
-          <thead>
-            <tr>
-                <th>Company ID</th>
-                <th>Property Name</th>
-                <th>Contact First Name</th>
-                <th>Street Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip</th>
-                <th>Phone</th>
-            </tr>
-          </thead>
-          <tbody>
-            {property.map(this.renderProperty)}
-          </tbody>
-      </table>
+      <Paper >
+      <Table >
+        <TableHead>
+          <TableRow>
+            <TableCell>Company ID</TableCell>
+            <TableCell numeric>Company Name</TableCell>
+            <TableCell numeric>Created Date</TableCell>
+            <TableCell numeric>Street Address</TableCell>
+            <TableCell numeric>City</TableCell>
+            <TableCell numeric>State</TableCell>
+            <TableCell numeric>Zip</TableCell>
+            <TableCell numeric>Phone</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {property.map(this.renderProperty)}
+        </TableBody>
+      </Table>
+    </Paper>
     );
   }
 }
