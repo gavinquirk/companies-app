@@ -12,16 +12,17 @@ const connection = mysql.createConnection({
     database: 'gq_assignment',
 })
 
-// Connect
+// Connection
 connection.connect(err => {
     if(err) {
         return err;
     }
 });
 
+// Middleware
 app.use(cors());
 
-// Companies Route
+// Companies API Route
 app.get('/api/companies', (req, res) => {
     connection.query('SELECT * FROM companies', (err, results) => {
         if(err) {
@@ -34,7 +35,7 @@ app.get('/api/companies', (req, res) => {
     })
 })
 
-// Properties Route
+// Properties API Route
 app.get('/api/properties/:company_id', (req, res) => {
     connection.query('SELECT * FROM properties WHERE company_id=?', [req.params.company_id], (err, results) => {
         if(err) {
