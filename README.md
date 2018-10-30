@@ -9,4 +9,5 @@ To Run:
     - Client subfolder will automatically be npm installed
 5. Enter npm start
     - Server will start on localhost:4000, client will start on localhost:3000
-6. Click properties on table row to see associated properties, click home to return to main page
+6. Visit localhost:3000 in browser
+7. Click properties on table row to see associated properties, click home to return to main page
